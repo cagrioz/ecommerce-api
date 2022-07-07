@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11" />
+
+    <!-- Resources -->
+    <%- include('./head.ejs') %>
+
+</head>
+<body>
+    <!-- Wrapper -->
+    <div class="wrapper">
+
+        <!-- Top Header
+        ======================================== -->
+        <div class="top-header">
+            <div class="osf-logo mx-auto">
+                <a href="/"><img src="/images/site/logo.png" alt=""></a>
+            </div>
+            <div class="project-title text-center">
+                <h1><a href="/">OSF Glorious Store</a></h1>
+            </div>
+        </div>
+
+        <!-- OSF Header
+        ======================================== -->
+        <header class="osf-header">
+            <div class="container">
+
+                <!-- OSF Navbar -->
+                <nav class="osf-navbar header-navbar text-center">
+                    <ul>
+                        
+                        <%# Loop the menu %>
+                        <% menuItems.forEach(el => { %>
+                            <% if (el.parent_category_id === 'root') { %>
+                                <li><a href="/categories/<%= el.id %>"><%= el.name %></a></li>
+                            <% } %>
+                        <% }); %> 
+
+                    </ul>
+                    <ul class="nav-user">
+                    <% if (user) { %>
+                        <%
+                            let firstName = user.name.split(' ')[0];
+                            const userName = firstName[0].toUpperCase() + firstName.slice(1).toLowerCase();
+                        %>
+
+                        <li class="nav--profile"><a href="#"><img src="/images/icons/user.png" alt="My Profile"> <span class="profile-name">Hey <%= userName %></span></a></li>
+                        <li><a href="/cart"><img src="/images/icons/cart.png" alt="Cart"> <span class="profile-name">Cart</span></a></li>
+                        <li class="nav--logout"><a href="#">Log out</a></li>
+                    <% } else { %>
+                        <li><a href="/signup">Sign up</a></li>
+                        <li><a href="/signin">Sign in</a></li>
+                    <% } %>
+                </ul>
+
+                </nav>
+                <!-- OSF Navbar / End -->
+
+            </div>
+        </header>
+        <!-- OSF Header / End -->

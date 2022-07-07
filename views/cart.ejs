@@ -1,0 +1,73 @@
+<%# Include header %>
+<%- include('./partials/header.ejs', {
+    menuItems
+})  %>
+
+<!-- Page Header
+======================================== -->
+<section class="page-header">
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <nav class="breadcrumbs-nav text-start">
+                <ul>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</section>
+<!-- Page Header / End -->
+
+<!-- OSF Content
+======================================== -->
+<div class="osf-content cart-page">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="content-title">
+                <h1>Cart :</h1>
+            </div>
+
+            <!-- OSF Main -->
+            <main class="osf-main col-md-9">
+
+                <% if (cartItems.length > 0) { %>
+
+                    <%# Loop the categories %>
+                    <% cartItems.forEach(product => { %>
+                        <%- include('./parts/content_cart.ejs', {product})  %> 
+                    <% }) %>
+            
+                <% } else { %>
+                    
+                    <%# Include No Content %>
+                    <%- include('./parts/content_none.ejs', {
+                        error: 'There is no such category'
+                    });  %>   
+            
+                <% } %>
+
+            </main>
+            <!-- OSF Main / End -->
+
+            <% const total = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(cart_total); %> 
+
+            <aside class="cart-total col-md-3">
+                <div class="total-box">
+                    <div class="price">Total: <%= total %></div>
+                </div>
+                <div class="btn-more-wrap">
+                    <button type="submit" class="btn btn--green btn-product btn-buy">Buy Now</button>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+</div>
+<!-- OSF Content / End -->
+
+<%# Include footer %>
+<%- include('./partials/footer.ejs')  %>

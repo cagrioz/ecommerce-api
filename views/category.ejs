@@ -1,0 +1,75 @@
+<%# Include header %>
+<%- include('./partials/header.ejs', {
+    menuItems
+})  %>
+
+<!-- Page Header
+======================================== -->
+<section class="page-header">
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <nav class="breadcrumbs-nav text-start">
+                <ul>
+                    <% crumbs.forEach(crumb => { %>
+                        <li><a href="<%= crumb.url %>"><%= crumb.name %></a></li>
+                    <% }) %>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</section>
+<!-- Page Header / End -->
+
+<!-- OSF Content
+======================================== -->
+<div class="osf-content">
+
+    <div class="category-page-header">
+        <div class="container-fluid">
+
+            <%- include('./single/content_category.ejs', {
+                category
+            }); %> 
+            
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+
+            <div class="content-title">
+                <h1>Subcategories:</h1>
+            </div>
+
+            <!-- OSF Main -->
+            <main class="osf-main col-md-12">
+
+                <% if (subcategories.length > 0) { %>
+
+                    <%# Loop the categories %>
+                    <% subcategories.forEach(subcategory => { %>
+                        <%- include('./single/content_subcategory.ejs', {subcategory})  %> 
+                    <% }) %>
+            
+                <% } else { %>
+                    
+                    <%# Include No Content %>
+                    <%- include('./parts/content_none.ejs', {
+                        error: 'There is no such category'
+                    });  %>   
+            
+                <% } %>
+
+            </main>
+            <!-- OSF Main / End -->
+
+        </div>
+    </div>
+</div>
+<!-- OSF Content / End -->
+
+<%# Include footer %>
+<%- include('./partials/footer.ejs')  %>

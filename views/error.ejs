@@ -1,0 +1,29 @@
+<%- include('./partials/header', {
+    menuItems
+})  %>
+
+<!-- OSF Content
+======================================== -->
+<div class="osf-content error-content">
+    <div class="container">
+        <div class="row">
+
+            <!-- OSF Main -->
+            <main class="osf-main col-md-12">
+
+
+                <h1 class="page-title"><%= page_title %></h1>
+
+                <%- include('./parts/content_none.ejs', {
+                    error: msg
+                }); %>
+
+            </main>
+            <!-- OSF Main / End -->
+
+        </div>
+    </div>
+</div>
+<!-- OSF Content / End -->
+
+<%- include('./partials/footer')  %>

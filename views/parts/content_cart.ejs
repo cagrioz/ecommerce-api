@@ -1,0 +1,38 @@
+<% const imgData = product.images[0]; %>
+<% const price = new Intl.NumberFormat('en-US', { style: 'currency', currency: product.currency }).format(product.price); %>
+
+<div class="cart-item" data-id="<%= product.id %>" data-variant-id="<%= product.variant_id %>">
+    <div class="cart-image">
+        <a href="/products/<%= product.id %>"><img src="/images/<%= imgData.link %> " alt="<%= product.name %>"></a>
+    </div>
+ 
+    <div class="cart-content">
+        <h3 class="product-title"><a href="/products/<%= product.id %>"><%= product.name %></a></h3>
+        <div class="variant-attrs">
+
+            <% if (product.colorName || product.size || product.accessorySize) { %>
+            <p class="color"><%= product.colorName %></p>
+            <p class="size"><%= product.size %></p>
+            <p class="accSize"><%= product.accSizeName %></p>
+            <% } %>
+
+        </div>
+    </div>
+ 
+    <div class="quantity">
+        <button class="plus-btn" type="button" name="button">
+            <img src="/images/icons/plus.svg" alt="" />
+        </button>
+        <input type="text" name="name" value="<%= product.quantity %>">
+        <button class="minus-btn" type="button" name="button">
+            <img src="/images/icons/minus.svg" alt="" />
+        </button>
+    </div>
+
+    <div class="buttons">
+        <span class="delete-btn"></span>
+        <span class="like-btn"></span>
+    </div>
+ 
+    <div class="total-price"><%= price %></div>
+</div>

@@ -1,0 +1,14 @@
+<div class="subcategory">
+    <h3 class="subcategory-title"><a href="/categories/<%= subcategory.id %>"><%= subcategory.page_title %></a></h3>
+
+    <div class="subcatergory-image">
+        <a href="/categories/<%= subcategory.id %>"><img src="/images/<%= subcategory.image; %>" alt="<%= subcategory.page_title %>"></a>
+    </div>
+    <div class="subcategory-content">
+        <h3><a href="/categories/<%= subcategory.id %>"><%= subcategory.name %></a></h3>
+        <p><%= subcategory.page_description %></p>
+    </div>
+    <div class="btn-more-wrap">
+        <a href="/categories/<%= subcategory.id %>" class="btn btn-more btn-category btn-md"><%= btnMoreText %></a>
+    </div>
+</div>

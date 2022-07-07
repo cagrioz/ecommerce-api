@@ -1,0 +1,46 @@
+<%# Include header %>
+<%- include('./partials/header', {
+    menuItems
+}) %>
+
+<!-- Page Header
+======================================== -->
+<section class="page-header">
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <nav class="breadcrumbs-nav text-start">
+                <ul>
+                    <% crumbs.forEach(crumb => { %>
+                        <li><a href="<%= crumb.url %>"><%= crumb.name %></a></li>
+                    <% }) %>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</section>
+<!-- Page Header / End -->
+
+<!-- OSF Content
+======================================== -->
+<div class="osf-content single-page">
+
+    <div class="container">
+
+        <!-- OSF Main -->
+        <main class="osf-main col-md-12">
+            <div class="row">
+
+                <%- include('./single/single_product', {product})  %> 
+    
+            </div>
+        </main>
+        <!-- OSF Main / End -->
+
+    </div>
+</div>
+<!-- OSF Content / End -->
+
+<%# Include footer %>
+<%- include('./partials/footer')  %>

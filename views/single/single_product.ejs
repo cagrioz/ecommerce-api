@@ -1,0 +1,85 @@
+<% 
+let price;
+if (product.stockStatus) 
+    price = new Intl.NumberFormat('en-US', { style: 'currency', currency: product.currency }).format(product.price);
+else
+    price = 'Out of stock!'
+%> 
+
+<div class="product col-md-12">
+    <div class="product-flex-wrap">
+
+        <div class="product-left">
+
+            <div class="product-image">
+                <div class="owl-carousel">
+                    <% product.images.forEach(element => { %>
+
+                    <div class="item">
+                        <img src="/images/<%= element.link %> " alt="<%= element.alt %>">
+                    </div>
+                    <% }) %>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="product-right">
+
+            <div class="product-content">
+                <h3 class="post-title"><%= product.name %></h3>
+                <p><%= product.short_description %></p>
+
+                <% if (product.long_description !== product.short_description) {%> 
+                    <p><%- product.long_description  %></p>
+                <% } %>
+
+                <form class="variations-form <%= `product-${product.id} variant-${product.variant_id}` %>">
+
+                    <% if (product.variation_attributes.length > 0) { %> 
+
+                        <% product.variation_attributes.forEach((variant, index) => { %>
+                            <div class="variant <%= `variant-${variant.id}` %>">
+                                <h3 class="variant-title"><%= variant.name %>: </h3>
+
+                                <div class="variant-options">
+                                    <% variant.values.forEach((el, i) => { %>
+                                        <div data-<%= variant.id %>="<%= el.value %>" class="variant-element">
+                                            <input id="variant-<%= `${index}-${el.value}` %>" type="radio" name="<%= variant.id %>" value="<%= el.value %>" <%= (product.color == el.value || product.size == el.value || product.accessorySize == el.value || ((!product.color || !product.size || !product.accessorySize) && i == 0)) ? 'checked' : ''%> required>
+                                            <label for="variant-<%= `${index}-${el.value}` %>">
+                                                <%= el.name %>
+                                            </label>
+                                        </div>
+                                    <% }) %>
+                                </div>
+                            </div>
+                        <% }) %>
+
+                    <% } %>
+
+                    <div class="product-info-footer">
+
+                        <%# If stock exist then display buy and add cart button %>
+                        <% if (product.stockStatus) { %> 
+                        <div class="btn-more-wrap">
+                            <button type="submit" class="btn btn--green btn-product btn-buy">Buy Now</button>
+                        </div>
+                        <div class="btn-more-wrap">
+                            <button type="submit" class="btn btn-more btn-product btn-cart">Add To Cart</button>
+                        </div>
+                        <% } %>
+
+                        <h4 class="price"><%= price %></h4>
+                    </div>
+
+                </form>
+                
+            </div>
+            
+
+        </div>
+
+    </div>
+</div>

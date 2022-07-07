@@ -1,0 +1,31 @@
+<% const imgURL = product.image_groups[0].images[0].link; %>
+<% const price = new Intl.NumberFormat('en-US', { style: 'currency', currency: product.currency }).format(product.price); %> 
+<div class="product col-md-6">
+    <div class="product-flex-wrap">
+
+        <div class="product-left">
+
+            <div class="product-image">
+                <a href="/products/<%= product.id %>"><img src="/images/<%= imgURL %> " alt="<%= product.name %>"></a>
+            </div>
+
+        </div>
+
+        <div class="product-right">
+
+            <div class="product-content">
+                <h3 class="product-title"><a href="/products/<%= product.id %>"><%= product.name %></a></h3>
+                <p><%= product.short_description %></p>
+            </div>
+            <div class="product-info-footer">
+                <h4 class="price"><%= price %></h4>
+                <div class="btn-more-wrap">
+                    <a href="/products/<%= product.id %>" class="btn btn-more btn-product">More Info</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
